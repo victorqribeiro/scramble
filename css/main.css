@@ -1,0 +1,27 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+canvas {
+    display: block;
+}
+
+body, button {
+    font-family: Arial;
+    font-size: 1.2em;
+    padding: 1em;
+}
+
+#status {
+    display: block;
+    min-height: 1.2em;
+}
