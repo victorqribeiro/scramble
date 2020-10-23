@@ -2,7 +2,7 @@
 
 Put the numbers in the right order.
 
-![screenshot](screenshot.png)
+[![screenshot](screenshot.png)](https://victorribeiro.com/scramble/)
 
 Play it [here](https://victorribeiro.com/scramble)
 
