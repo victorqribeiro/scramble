@@ -91,11 +91,14 @@ const findEmptyPos = () => {
     }
 }
 
+const checkInvalid = (x, y, i, j) => 
+    (y+i < 0 || y+i > game.length-1 || x+j < 0 || x+j > game[0].length-1 || i+j === 0 || i === j)
+
 const getNeighbour = pos => {
     let n = []
     for(let i = -1; i < 2; i++){
         for(let j = -1; j < 2; j++){
-            if(pos.y+i < 0 || pos.y+i > game.length-1 || pos.x+j < 0 || pos.x+j > game[0].length-1 || i+j === 0 || i === j) 
+            if(checkInvalid(pos.x, pos.y, i, j))
                 continue
             if(game[pos.y+i][pos.x+j])
                 n.push({x: pos.x+j, y: pos.y+i})
@@ -121,7 +124,7 @@ const scramble = (num = 1) => {
 const lookEmptyPos = pos => {
     for(let i = -1; i < 2; i++){
         for(let j = -1; j < 2; j++){
-            if(pos.y+i < 0 || pos.y+i > game.length-1 || pos.x+j < 0 || pos.x+j > game[0].length-1 || i+j == 0)   
+            if(checkInvalid(pos.x, pos.y, i, j))
                 continue
             if(!game[pos.y+i][pos.x+j])
                 return {x: pos.x+j, y: pos.y+i}
