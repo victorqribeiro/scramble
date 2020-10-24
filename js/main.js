@@ -25,6 +25,7 @@ canvas.style.height = `${h}px`
 const c = canvas.getContext('2d')
 c.scale(scale, scale)
 c.textAlign = "center"
+c.textBaseline = "middle"
 const fontSize = 24
 c.font = `${fontSize}px Arial`
 
@@ -57,7 +58,7 @@ const draw = () => {
             c.fillRect(x, y, tileSize, tileSize)
             c.strokeRect(x, y, tileSize, tileSize)
             c.fillStyle = "black"
-            c.fillText(piece, x+tileSize/2, y+(tileSize+fontSize-2)/2)
+            c.fillText(piece, x+tileSize/2, y+tileSize/2)
         }
     }
 }
