@@ -1,48 +1,49 @@
+let canvas, c, w, h, scale, game, tileSize, moves, status, scrambleBtn
+
+const init = () => {
+    moves = 0
+    tileSize = 96
+    createGame(3)
+    canvas = document.createElement('canvas')
+    updateCanvas()
+    scrambleBtn = document.createElement('button')
+    scrambleBtn.innerText = "Scramble"
+    scrambleBtn.addEventListener('click', () => scramble(Math.floor(Math.random()*100)))
+    status = document.createElement('div')
+    status.id = 'status'
+    document.body.appendChild(status)
+    document.body.appendChild(canvas)
+    document.body.appendChild(scrambleBtn)
+    scramble(1000)
+}
+
+const updateCanvas = () => {
+    scale = window.devicePixelRatio
+    w = game[0].length * tileSize
+    h =  game.length * tileSize
+    canvas.width = w * scale
+    canvas.height = h * scale
+    canvas.style.width = `${w}px`
+    canvas.style.height = `${h}px`
+    c = canvas.getContext('2d')
+    c.scale(scale, scale)
+    c.textAlign = "center"
+    c.textBaseline = "middle"
+    const fontSize = 24
+    c.font = `${fontSize}px Arial`
+    canvas.addEventListener('click', move)
+}
+
 const createGame = num => {
-    const game = Array(num).fill().map(_ => Array(num).fill(0))
+    game = Array(num).fill().map(_ => Array(num).fill(0))
     for(let i = 0; i < num; i++){
         for(let j = 0; j < num; j++){
             game[i][j] = i * num + j
         }
     }
-    return game
 }
 
-const game = createGame(3)
-
-const tileSize = 96
-
-let moves = 0
-
-const scale = window.devicePixelRatio
-const canvas = document.createElement('canvas')
-const w = game[0].length * tileSize
-const h =  game.length * tileSize
-canvas.width = w * scale
-canvas.height = h * scale
-canvas.style.width = `${w}px`
-canvas.style.height = `${h}px`
-const c = canvas.getContext('2d')
-c.scale(scale, scale)
-c.textAlign = "center"
-c.textBaseline = "middle"
-const fontSize = 24
-c.font = `${fontSize}px Arial`
-
-const scrambleBtn = document.createElement('button')
-scrambleBtn.innerText = "Scramble"
-scrambleBtn.addEventListener('click', () => scramble(Math.floor(Math.random()*100)))
-
-const status = document.createElement('div')
-status.id = 'status'
-
-document.body.appendChild(status)
-document.body.appendChild(canvas)
-document.body.appendChild(scrambleBtn)
-
-const getPos = e => {
-    return {x: Math.floor(e.offsetX / tileSize), y: Math.floor(e.offsetY / tileSize)}
-}
+const getPos = e => {return {x: Math.floor(e.offsetX / tileSize), y: Math.floor(e.offsetY / tileSize)}}
 
 const draw = () => {
     c.clearRect(0,0,w,h)
@@ -139,6 +140,4 @@ const move = e => {
     moves += 1
 }
 
-canvas.addEventListener('click', move)
-
-scramble(1000)
+init()
