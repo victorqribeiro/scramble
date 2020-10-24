@@ -151,8 +151,7 @@ const move = e => {
     const pos = getPos(e)
     const newPos = lookEmptyPos(pos)
     tradePos(pos, newPos)
-    if(checkGameWin())
-        status.innerText = `Win - ${moves} moves`
+    status.innerText = checkGameWin() ? `Win - ${moves} moves` : ''
     draw()
     moves += 1
 }
