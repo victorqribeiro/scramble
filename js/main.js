@@ -1,4 +1,4 @@
-let canvas, c, w, h, scale, game, tileSize, moves, status, scrambleBtn
+let canvas, c, w, h, scale, game, tileSize, moves, status
 
 const init = () => {
     moves = 0
@@ -6,14 +6,31 @@ const init = () => {
     createGame(3)
     canvas = document.createElement('canvas')
     updateCanvas()
-    scrambleBtn = document.createElement('button')
+    const options = document.createElement('div')
+    const scrambleBtn = document.createElement('button')
     scrambleBtn.innerText = "Scramble"
     scrambleBtn.addEventListener('click', () => scramble(Math.floor(Math.random()*100)))
+    const cubeSize = document.createElement('select')
+    for(let i = 3; i < 6; i++){
+        const opt = document.createElement('option')
+        opt.value = i
+        opt.innerText = i
+        cubeSize.appendChild(opt)
+    }
+    cubeSize.addEventListener('change', function(){
+        const value = parseInt(this.value)
+        tileSize = 96 - (value-3) * 16
+        createGame(value)
+        updateCanvas()
+        scramble(100)
+    })
     status = document.createElement('div')
     status.id = 'status'
+    options.appendChild(cubeSize)
+    options.appendChild(scrambleBtn)
     document.body.appendChild(status)
     document.body.appendChild(canvas)
-    document.body.appendChild(scrambleBtn)
+    document.body.appendChild(options)
     scramble(1000)
 }
 

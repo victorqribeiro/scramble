@@ -12,7 +12,7 @@ canvas {
     display: block;
 }
 
-body, button {
+body, button, select {
     font-family: Arial;
     font-size: 1.2em;
     padding: 1em;
