@@ -1,8 +1,14 @@
-const game = [
-    [0,1,3],
-    [4,2,5],
-    [7,8,6]
-]
+const createGame = num => {
+    const game = Array(num).fill().map(_ => Array(num).fill(0))
+    for(let i = 0; i < num; i++){
+        for(let j = 0; j < num; j++){
+            game[i][j] = i * num + j
+        }
+    }
+    return game
+}
+
+const game = createGame(3)
 
 const tileSize = 96
 
