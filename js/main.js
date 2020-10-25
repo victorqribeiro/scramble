@@ -55,7 +55,7 @@ const createGame = num => {
     game = Array(num).fill().map(_ => Array(num).fill(0))
     for(let i = 0; i < num; i++){
         for(let j = 0; j < num; j++){
-            game[i][j] = i * num + j
+            game[i][j] = (i * num + j + 1) % (num*num)
         }
     }
 }
